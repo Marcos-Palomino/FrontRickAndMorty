@@ -1,0 +1,124 @@
+// Variables de colores para mejorar consistencia
+$background-color: #212529;
+$hover-bg-color: #495057;
+$badge-bg-color: #17a2b8;
+$white-color: #fff;
+$transition-duration: 0.3s;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+
+// Animaciones
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandir {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulso {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Estilos de la tarjeta del personaje
+.character-card {
+  background-color: $background-color;
+  color: $white-color;
+  border-radius: 1rem;
+  animation: aparecer 0.8s ease-out forwards;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow $transition-duration ease;
+
+  &:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    .character-image {
+      animation: expandir 0.5s ease forwards;
+    }
+  }
+}
+
+// Imagen del personaje con efectos de animación
+.character-image {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border-radius: 0.5rem;
+  filter: grayscale(20%);
+  transform-origin: center;
+
+  &:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Estilos para las entradas de la lista
+.list-group-item.description {
+  background-color: rgba(33, 37, 41, 0.8);
+  color: $white-color;
+  border: none;
+  transition: background-color $transition-duration ease;
+  animation: aparecer 1.2s ease-out forwards;
+
+  &:hover {
+    background-color: $hover-bg-color;
+  }
+}
+
+// Estilos para el estado del personaje
+.estado-personaje {
+  background-color: $badge-bg-color; // Color por defecto
+  color: $white-color;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1rem;
+  animation: pulso 2s infinite ease-in-out;
+  display: inline-block;
+
+  // Clase para cuando el personaje está vivo
+  &.badge-success {
+    background-color: $success-color;
+  }
+
+  // Clase para cuando el personaje está muerto
+  &.badge-danger {
+    background-color: $danger-color;
+  }
+
+  // Clase para cuando el estado es desconocido
+  &.badge-warning {
+    background-color: $warning-color;
+  }
+}
+// Botón con un pequeño efecto de sombra y animación
+.btn-primary {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  transition: background-color $transition-duration ease, transform $transition-duration ease;
+
+  &:hover {
+    background-color: darken($badge-bg-color, 10%);
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  }
+}

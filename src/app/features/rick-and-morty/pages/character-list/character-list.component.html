@@ -1,0 +1,29 @@
+<app-loading *ngIf="loading$ | async" ></app-loading>
+
+<div class="container mt-4">
+  <div *ngIf="error$ | async as error" class="alert alert-danger">
+    Error loading characters: {{ error.message }}
+  </div>
+
+  <div class="row" *ngIf="!(loading$ | async)">
+    <div *ngFor="let character of characters$ | async; trackBy: trackByCharacterId" class="col-md-4 col-lg-3 mb-4">
+      <div class="card" [routerLink]="['/rick-and-morty', character.id]">
+        <img [src]="character.image" class="card-img-top" alt="{{ character.name }}">
+
+        <div class="card-content">
+          <h5 class="card-title">
+            <span class="status-circle" [ngClass]="getStatusClass(character.status)"></span>
+            {{ getFirstTwoWords(character.name) }}
+          </h5>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <app-pagination *ngIf="!(error$ | async)"></app-pagination>
+
+</div>

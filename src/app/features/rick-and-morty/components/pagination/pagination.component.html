@@ -1,0 +1,33 @@
+<nav aria-label="Page navigation " class="mt-4">
+  <ul class="pagination justify-content-end">
+    <ng-container *ngIf="pagination$ | async as pagination">
+
+      <li class="page-item">
+        <button
+          class="page-link  bg-dark border-green"
+          [ngClass]="{'disabled': pagination.currentPage === 1,'activated': pagination.currentPage > 1}"
+          (click)="previousPage(pagination.currentPage)"
+          [disabled]="pagination.currentPage === 1">
+          Anterior
+        </button>
+      </li>
+
+      <li class="page-item bg-dark border-green">
+        <span class="page-link activated bg-dark border-green">
+          {{ pagination.currentPage }} de {{ pagination.totalPages }}
+        </span>
+      </li>
+
+      <li class="page-item">
+        <button
+          class="page-link  bg-dark border-green"
+          [ngClass]="{'disabled': pagination.currentPage === pagination.totalPages,'activated': pagination.currentPage < pagination.totalPages}"
+          (click)="nextPage(pagination.currentPage, pagination.totalPages)"
+          [disabled]="pagination.currentPage === pagination.totalPages">
+          Siguiente
+        </button>
+      </li>
+
+    </ng-container>
+  </ul>
+</nav>

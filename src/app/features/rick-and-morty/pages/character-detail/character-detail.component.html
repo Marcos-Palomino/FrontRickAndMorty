@@ -1,0 +1,32 @@
+<app-loading *ngIf="loading$ | async"></app-loading>
+
+<div class="container mt-5" *ngIf="character$ | async as character">
+  <div class="card character-card shadow-lg border-0">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="character.image" class="img-fluid rounded-start character-image" alt="{{ character.name }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ character.name }}</h2>
+          <span class="badge estado-personaje fs-6"
+          [ngClass]="{
+            'badge-success': character.status === 'live',
+            'badge-danger': character.status === 'Dead',
+            'badge-warning': character.status === 'unknown'
+          }"
+          >{{ character.status | translateStatus }}</span>
+          <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item description"><strong>Especie:</strong> {{ character.species }}</li>
+            <li class="list-group-item description"><strong>Género:</strong> {{ character.gender | translateGender }}</li>
+            <li class="list-group-item description"><strong>Origen:</strong> {{ character.origin.name  }}</li>
+            <li class="list-group-item description"><strong>Ubicación Actual:</strong> {{ character.location.name }}</li>
+          </ul>
+          <div class="mt-3">
+            <a [routerLink]="['/rick-and-morty']" class="btn btn-primary mt-3">Regresar al listado</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

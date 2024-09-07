@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Barra de desplazamiento */
+.body {
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 181, 204, 0.2);
+  border-radius: 10px;
+  border: 3px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(33, 37, 41);
+  border-radius: 10px;
+}
+
+
+.btn-primary {
+  background: #8FB12F !important;
+  border-color: #8FB12F !important;
+}
